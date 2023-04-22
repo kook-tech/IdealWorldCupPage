@@ -19,9 +19,11 @@ public abstract class BaseEntity {
     protected Long id;
 
     @CreatedDate
+    @Column(name="reg_dt")
     private LocalDateTime regDt;
 
     @LastModifiedDate
+    @Column(name="mod_dt")
     private LocalDateTime modDt;
 
     @PrePersist

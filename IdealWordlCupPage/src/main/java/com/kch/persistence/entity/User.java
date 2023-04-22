@@ -29,19 +29,22 @@ public class User extends BaseEntity {
     @Column(name = "name", nullable = false, length = 8)
     private String name;
 
-    @Column(name = "age", nullable = false)
-    private int age;
+    @Column(name="birth")
+    private LocalDateTime birth;
 
-    @Column(name = "addr", nullable = false, length = 40)
-    private String addr;
+    @Column(name="email")
+    private String email;
+
+    @Column(name="role")
+    private String role;
 
     @Builder
-    public User(String loginId, String password, String name, int age, String addr) {
-        super();
+    public User(String loginId, String password, String name, LocalDateTime birth, String email, String role) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
-        this.age = age;
-        this.addr = addr;
+        this.birth = birth;
+        this.email = email;
+        this.role = role;
     }
 }
