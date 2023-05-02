@@ -2,10 +2,7 @@ package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -14,19 +11,18 @@ import java.time.LocalDateTime;
 @Table(name="TBL_GAME_LOGS")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GameLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="game_log_id")
     private Long gameLogId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name="game_id")
     private Game gameId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name="user_id")
     private User userId;
 
@@ -34,14 +30,14 @@ public class GameLog {
     private String gameLog;
 
     @CreatedDate
+    @Column(name="reg_dt")
     private LocalDateTime regDt;
 
     @Builder
-    public GameLog(Long gameLogId, Game gameId, User userId, String gameLog, LocalDateTime regDt) {
+    private GameLog(Long gameLogId, Game gameId, User userId, String gameLog) {
         this.gameLogId = gameLogId;
         this.gameId = gameId;
         this.userId = userId;
         this.gameLog = gameLog;
-        this.regDt = regDt;
     }
 }

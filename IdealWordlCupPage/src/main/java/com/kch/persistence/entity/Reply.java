@@ -2,39 +2,35 @@ package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name="TBL_REPLIES")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AttributeOverride(
         name="id",
         column = @Column(name="reply_id")
 )
 public class Reply extends BaseEntity {
-    @ManyToOne
-    @Column(name="user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name="user_id", nullable = false)
     private User userId;
 
-    @ManyToOne
-    @Column(name="board_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name="board_id", nullable = true)
     private Board boardId;
 
-    @ManyToOne
-    @Column(name="game_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name="game_id", nullable = true)
     private Game gameId;
 
-    @Column(name="content", length = 100)
+    @Column(name="content", nullable = false, length = 100)
     private String content;
 
     @Builder
-    public Reply(User userId, Board boardId, Game gameId, String content) {
+    private Reply(User userId, Board boardId, Game gameId, String content) {
         this.userId = userId;
         this.boardId = boardId;
         this.gameId = gameId;

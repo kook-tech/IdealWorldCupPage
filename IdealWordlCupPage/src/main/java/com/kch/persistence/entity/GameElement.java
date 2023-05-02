@@ -2,17 +2,13 @@ package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "TBL_GAME_ELEMENTS")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AttributeOverride(
         name="id",
         column = @Column(name="element_id")
@@ -37,7 +33,7 @@ public class GameElement extends BaseEntity {
     private int elementWinCnt;
 
     @Builder
-    public GameElement(Game gameId, File fileId, String elementTitle, int elementSelectCnt, int elementWinCnt) {
+    private GameElement(Game gameId, File fileId, String elementTitle, int elementSelectCnt, int elementWinCnt) {
         this.gameId = gameId;
         this.fileId = fileId;
         this.elementTitle = elementTitle;

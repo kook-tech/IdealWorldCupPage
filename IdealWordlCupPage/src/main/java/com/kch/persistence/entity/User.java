@@ -1,11 +1,10 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
+import com.kch.service.model.dtos.request.UserReqDTO;
+import com.kch.service.model.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,14 +12,13 @@ import java.time.LocalDateTime;
 @Table(name = "TBL_USERS")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AttributeOverride(
         name = "id",
         column = @Column(name = "user_id")
 )
 public class User extends BaseEntity {
-    @Column(name = "login_id", nullable = false, unique = true, length = 10)
+    @Column(name = "login_id", nullable = false, unique = true, length = 10, updatable = false)
     private String loginId;
 
     @Column(name = "password", nullable = false, length = 16)
@@ -29,22 +27,28 @@ public class User extends BaseEntity {
     @Column(name = "name", nullable = false, length = 8)
     private String name;
 
-    @Column(name="birth")
+    @Column(name="birth", updatable = false)
     private LocalDateTime birth;
 
-    @Column(name="email")
+    @Column(name="email", nullable = false, length = 30)
     private String email;
 
-    @Column(name="role")
-    private String role;
+    @Column(name="role", nullable = false, length = 20)
+    private UserRole role;
 
     @Builder
-    public User(String loginId, String password, String name, LocalDateTime birth, String email, String role) {
+    private User(String loginId, String password, String name, LocalDateTime birth, String email, UserRole role) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
         this.birth = birth;
         this.email = email;
         this.role = role;
+    }
+
+    public void updateUser(UserReqDTO.UPDATE update){
+        this.password = update.getPassword();
+        this.name = update.getName();
+        this.email = update.getEmail();
     }
 }

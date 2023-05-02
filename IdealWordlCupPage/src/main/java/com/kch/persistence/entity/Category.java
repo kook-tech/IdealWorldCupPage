@@ -7,8 +7,7 @@ import lombok.*;
 @Table(name="TBL_CATEGORIES")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +18,7 @@ public class Category {
     private String categoryName;
 
     @Builder
-    public Category(Long categoryId, String categoryName) {
+    private Category(Long categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }

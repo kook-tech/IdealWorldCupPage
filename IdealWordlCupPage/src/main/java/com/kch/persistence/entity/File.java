@@ -11,27 +11,26 @@ import lombok.*;
 @Table(name = "TBL_FILES")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AttributeOverride(
         name = "id",
         column = @Column(name = "file_id")
 )
 public class File extends BaseEntity {
-    @Column(name="file_name")
+    @Column(name="file_name", nullable = false, length = 50)
     private String fileName;
 
-    @Column(name ="file_path")
+    @Column(name ="file_path", nullable = false, length = 255)
     private String filePath;
 
-    @Column(name="fileSize")
+    @Column(name="fileSize", nullable = false)
     private int fileSize;
 
-    @Column(name="file_extension")
+    @Column(name="file_extension", nullable = false, length = 20)
     private String fileExtension;
 
     @Builder
-    public File(String fileName, String filePath, int fileSize, String fileExtension) {
+    private File(String fileName, String filePath, int fileSize, String fileExtension) {
         this.fileName = fileName;
         this.filePath = filePath;
         this.fileSize = fileSize;

@@ -2,17 +2,13 @@ package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "TBL_GAMES")
 @ToString
 @Getter
-@Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AttributeOverride(
         name = "id",
         column = @Column(name = "game_id")
@@ -20,7 +16,7 @@ import lombok.ToString;
 public class Game extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private User userId;
 
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -31,12 +27,12 @@ public class Game extends BaseEntity {
     private String gameTitle;
 
     @Lob
-    @Column(name = "game_description")
+    @Column(name = "game_description", nullable = true)
     private String gameDescription;
 
     @Builder
-    public Game(User user, File fileId, String gameTitle, String gameDescription) {
-        this.user = user;
+    private Game(User userId, File fileId, String gameTitle, String gameDescription) {
+        this.userId = userId;
         this.fileId = fileId;
         this.gameTitle = gameTitle;
         this.gameDescription = gameDescription;
