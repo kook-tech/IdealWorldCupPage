@@ -27,14 +27,5 @@ public abstract class BaseEntity {
     @Column(name="mod_dt")
     private LocalDateTime modDt;
 
-    @PrePersist
-    public void onPrePersist() {
-        this.regDt = LocalDateTime.now();
-        this.modDt = LocalDateTime.now();
-    }
 
-    @PreUpdate
-    public void onPreUpdate() {
-        this.modDt = LocalDateTime.now();
-    }
 }
