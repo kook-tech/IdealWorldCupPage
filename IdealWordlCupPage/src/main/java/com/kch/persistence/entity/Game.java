@@ -1,8 +1,12 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
+import com.kch.service.model.dtos.request.GameElementReqDTO;
+import com.kch.service.model.dtos.request.GameReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_GAMES")
@@ -36,5 +40,11 @@ public class Game extends BaseEntity {
         this.fileId = fileId;
         this.gameTitle = gameTitle;
         this.gameDescription = gameDescription;
+    }
+
+    public void updateGame(GameReqDTO.UPDATE update){
+        this.fileId = update.getFileId();
+        this.gameTitle = update.getGameTitle();
+        this.gameDescription = update.getGameDescription();
     }
 }

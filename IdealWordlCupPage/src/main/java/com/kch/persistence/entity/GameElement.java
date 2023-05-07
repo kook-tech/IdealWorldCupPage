@@ -1,6 +1,7 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
+import com.kch.service.model.dtos.request.GameElementReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,5 +40,10 @@ public class GameElement extends BaseEntity {
         this.elementTitle = elementTitle;
         this.elementSelectCnt = elementSelectCnt;
         this.elementWinCnt = elementWinCnt;
+    }
+
+    public void updateGameElement(GameElementReqDTO.UPDATE update){
+        this.fileId = update.getFileId();
+        this.elementTitle = update.getElementTitle();
     }
 }

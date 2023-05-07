@@ -1,6 +1,7 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
+import com.kch.service.model.dtos.request.BoardReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,9 @@ public class Board extends BaseEntity {
     @Column(name="board_title",length = 30)
     private String boardTitle;
 
+    @Column(name="board_cotent")
+    private String boardContent;
+
     @Column(name="view_cnt")
     private int view_cnt;
 
@@ -32,11 +36,17 @@ public class Board extends BaseEntity {
     private int like_cnt;
 
     @Builder
-    private Board(User userId, Category categoryId, String boardTitle) {
+    private Board(User userId, Category categoryId, String boardTitle, String boardContent) {
         this.userId = userId;
         this.categoryId = categoryId;
         this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
         this.view_cnt = 0;
         this.like_cnt = 0;
+    }
+
+    public void updateBoard(BoardReqDTO.UPDATE update){
+        this.boardTitle = update.getBoardTitle();
+        this.boardContent = update.getBoardContent();
     }
 }

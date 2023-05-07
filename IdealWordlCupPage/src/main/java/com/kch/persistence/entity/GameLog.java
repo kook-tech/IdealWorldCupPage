@@ -1,6 +1,7 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
+import com.kch.service.model.dtos.request.GameLogReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -39,5 +40,9 @@ public class GameLog {
         this.gameId = gameId;
         this.userId = userId;
         this.gameLog = gameLog;
+    }
+
+    public void updateGameLog(GameLogReqDTO.UPDATE update){
+
     }
 }

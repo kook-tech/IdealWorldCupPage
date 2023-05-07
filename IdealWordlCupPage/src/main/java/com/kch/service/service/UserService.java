@@ -55,7 +55,6 @@ public class UserService {
     param : 삭제 유저 아이디(pk)*/
     @Transactional
     public void deleteUserByUserId(Long userId) {
-
         final User user = userRepository
                 .findById(userId)
                 .orElseThrow(() -> new NotFoundException(ResponseStatus.FAIL_NOT_FOUND));

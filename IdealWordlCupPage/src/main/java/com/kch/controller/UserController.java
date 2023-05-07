@@ -46,7 +46,7 @@ public class UserController {
     }
 
     /*유저 정보 수정 컨트롤러
-    param : 수정 유저 UserId,수정 유저 info*/
+    param : 수정 유저 UserId, 수정 유저 info*/
     @PutMapping("/{userId}")
     public ResponseFormat<Void> updateUserByUserId(@PathVariable(name = "userId") Long userId, UserReqDTO.UPDATE update) {
         try {
@@ -73,6 +73,5 @@ public class UserController {
         } catch (RuntimeException e) {
             return ResponseFormat.error(ResponseStatus.FAIL_BAD_REQUEST);
         }
-
     }
 }

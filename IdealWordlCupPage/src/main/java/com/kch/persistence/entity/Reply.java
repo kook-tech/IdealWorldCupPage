@@ -1,6 +1,7 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
+import com.kch.service.model.dtos.request.ReplyReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,5 +36,9 @@ public class Reply extends BaseEntity {
         this.boardId = boardId;
         this.gameId = gameId;
         this.content = content;
+    }
+
+    public void updateReply(ReplyReqDTO.UPDATE update){
+        this.content = update.getContent();
     }
 }
