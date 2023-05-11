@@ -2,6 +2,8 @@ package com.kch.service.model.dtos.request;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 public class GameLogReqDTO {
 
     @Getter
@@ -9,15 +11,11 @@ public class GameLogReqDTO {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class CREATE{
-
+        private Long gameId;
+        private Long userId;
+        private String gameLog;
+        private LocalDateTime regDt;
     }
 
-
-    @Getter
-    @Builder
-    @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class UPDATE{
-
-    }
+    //수정DTO 필요 없음
 }
