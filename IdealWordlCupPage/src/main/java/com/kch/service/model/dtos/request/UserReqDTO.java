@@ -24,7 +24,7 @@ public class UserReqDTO {
         @NotBlank(message = "이메일을 입력해주세요")
         private String email;
 
-        private UserRole role = UserRole.USER;
+        private UserRole role;
     }
 
     @Builder

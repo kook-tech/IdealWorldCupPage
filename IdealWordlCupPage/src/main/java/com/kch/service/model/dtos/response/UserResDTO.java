@@ -19,7 +19,7 @@ public class UserResDTO {
         private String name;
         private LocalDateTime birth;
         private String email;
-        private UserRole role = UserRole.USER;
+        private UserRole role;
         private LocalDateTime regDt;
         private LocalDateTime modDt;
     }
