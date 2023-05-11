@@ -16,25 +16,30 @@ import lombok.*;
 )
 public class Reply extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="user_id", nullable = false)
-    private User userId;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="board_id", nullable = true)
-    private Board boardId;
+    @JoinColumn(name = "board_id", referencedColumnName = "board_id", nullable = true)
+    private Board board;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="game_id", nullable = true)
-    private Game gameId;
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id", nullable = true)
+    private Game game;
 
     @Column(name="content", nullable = false, length = 100)
     private String content;
 
-    @Builder
-    private Reply(User userId, Board boardId, Game gameId, String content) {
-        this.userId = userId;
-        this.boardId = boardId;
-        this.gameId = gameId;
+    @Builder //게시판에 대한 댓글
+    private Reply(User user, Board board, String content) {
+        this.user = user;
+        this.board = board;
+        this.content = content;
+    }
+    @Builder //게임에 대한 댓글
+    private Reply(User user, Game game, String content) {
+        this.user = user;
+        this.game = game;
         this.content = content;
     }
 

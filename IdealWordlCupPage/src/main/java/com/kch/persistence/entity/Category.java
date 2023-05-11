@@ -3,6 +3,8 @@ package com.kch.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="TBL_CATEGORIES")
 @ToString
@@ -12,14 +14,17 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="category_id")
-    private Long categoryId;
+    private Long id;
 
     @Column(name="category_name")
     private String categoryName;
 
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Board> boardList;
+
     @Builder
-    private Category(Long categoryId, String categoryName) {
-        this.categoryId = categoryId;
+    private Category(Long id, String categoryName) {
+        this.id = id;
         this.categoryName = categoryName;
     }
 }

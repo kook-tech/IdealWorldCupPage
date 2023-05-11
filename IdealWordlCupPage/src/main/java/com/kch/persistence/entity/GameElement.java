@@ -17,12 +17,12 @@ import lombok.*;
 public class GameElement extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("gameId")
-    private Game gameId;
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id")
+    private Game game;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_id", referencedColumnName = "id")
-    private File fileId;
+    @JoinColumn(name = "file_id", referencedColumnName = "file_id")
+    private File file;
 
     @Column(name = "element_title", nullable = false, length = 20)
     private String elementTitle;
@@ -34,16 +34,16 @@ public class GameElement extends BaseEntity {
     private int elementWinCnt;
 
     @Builder
-    private GameElement(Game gameId, File fileId, String elementTitle, int elementSelectCnt, int elementWinCnt) {
-        this.gameId = gameId;
-        this.fileId = fileId;
+    private GameElement(Game game, File file, String elementTitle, int elementSelectCnt, int elementWinCnt) {
+        this.game = game;
+        this.file = file;
         this.elementTitle = elementTitle;
         this.elementSelectCnt = elementSelectCnt;
         this.elementWinCnt = elementWinCnt;
     }
 
     public void updateGameElement(GameElementReqDTO.UPDATE update){
-        this.fileId = update.getFileId();
+        this.file = update.getFileId();
         this.elementTitle = update.getElementTitle();
     }
 }

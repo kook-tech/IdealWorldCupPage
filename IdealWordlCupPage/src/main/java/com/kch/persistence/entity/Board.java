@@ -5,6 +5,8 @@ import com.kch.service.model.dtos.request.BoardReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="TBL_BOARDS")
 @ToString
@@ -16,12 +18,12 @@ import lombok.*;
 )
 public class Board extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="user_id")
-    private User userId;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name="category_id")
-    private Category categoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    private Category category;
 
     @Column(name="board_title",length = 30)
     private String boardTitle;
@@ -35,14 +37,16 @@ public class Board extends BaseEntity {
     @Column(name="like_cnt")
     private int like_cnt;
 
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    private List<Reply> replyList;
+
+
     @Builder
-    private Board(User userId, Category categoryId, String boardTitle, String boardContent) {
-        this.userId = userId;
-        this.categoryId = categoryId;
+    private Board(User user, Category category, String boardTitle, String boardContent) {
+        this.user = user;
+        this.category = category;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
-        this.view_cnt = 0;
-        this.like_cnt = 0;
     }
 
     public void updateBoard(BoardReqDTO.UPDATE update){

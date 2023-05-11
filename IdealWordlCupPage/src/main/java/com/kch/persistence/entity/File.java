@@ -1,10 +1,7 @@
 package com.kch.persistence.entity;
 
 import com.kch.persistence.BaseEntity;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -28,6 +25,13 @@ public class File extends BaseEntity {
 
     @Column(name="file_extension", nullable = false, length = 20)
     private String fileExtension;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Game game;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private GameElement gameElement;
+
 
     @Builder
     private File(String fileName, String filePath, int fileSize, String fileExtension) {

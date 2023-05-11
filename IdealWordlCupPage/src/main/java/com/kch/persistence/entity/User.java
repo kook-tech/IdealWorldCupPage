@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_USERS")
@@ -35,6 +36,20 @@ public class User extends BaseEntity {
 
     @Column(name="role", nullable = false, length = 20)
     private UserRole role;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Board> boardList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Reply> replyList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<GameLog> gameLogList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Game> gameList;
+
+
 
     @Builder
     private User(String loginId, String password, String name, LocalDateTime birth, String email, UserRole role) {

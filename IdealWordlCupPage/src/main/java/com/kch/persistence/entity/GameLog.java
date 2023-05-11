@@ -1,7 +1,5 @@
 package com.kch.persistence.entity;
 
-import com.kch.persistence.BaseEntity;
-import com.kch.service.model.dtos.request.GameLogReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,15 +15,15 @@ public class GameLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="game_log_id")
-    private Long gameLogId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="game_id")
-    private Game gameId;
+    @JoinColumn(name = "game_id", referencedColumnName = "game_id")
+    private Game game;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name="user_id")
-    private User userId;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
     @Column(name="game_log")
     private String gameLog;
@@ -35,14 +33,14 @@ public class GameLog {
     private LocalDateTime regDt;
 
     @Builder
-    private GameLog(Long gameLogId, Game gameId, User userId, String gameLog) {
-        this.gameLogId = gameLogId;
-        this.gameId = gameId;
-        this.userId = userId;
+    private GameLog(Long id, Game game, User user, String gameLog, LocalDateTime regDt) {
+        this.id = id;
+        this.game = game;
+        this.user = user;
         this.gameLog = gameLog;
+        this.regDt = LocalDateTime.now();
     }
 
-    public void updateGameLog(GameLogReqDTO.UPDATE update){
+    //수정 메서드 필요없음.
 
-    }
 }
