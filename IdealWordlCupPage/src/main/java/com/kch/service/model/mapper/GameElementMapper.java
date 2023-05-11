@@ -5,6 +5,7 @@ import com.kch.service.model.dtos.request.GameElementReqDTO;
 import com.kch.service.model.dtos.response.GameElementResDTO;
 import com.kch.service.model.dtos.response.GameResDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
