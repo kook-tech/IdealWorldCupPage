@@ -20,7 +20,7 @@ public class UserController {
     /*유저 생성 컨트롤러
     param : 생성 유저 info*/
     @PostMapping
-    public ResponseFormat<Void> createUser(@RequestParam @Validated UserReqDTO.CREATE create) {
+    public ResponseFormat<Void> createUser(@RequestBody @Validated UserReqDTO.CREATE create) {
         try {
             userService.createUser(create);
             return ResponseFormat.success(ResponseStatus.SUCCESS_CREATE);
@@ -48,7 +48,7 @@ public class UserController {
     /*유저 정보 수정 컨트롤러
     param : 수정 유저 UserId, 수정 유저 info*/
     @PutMapping("/{userId}")
-    public ResponseFormat<Void> updateUserByUserId(@PathVariable(name = "userId") Long userId, UserReqDTO.UPDATE update) {
+    public ResponseFormat<Void> updateUserByUserId(@PathVariable(name = "userId") Long userId,@RequestBody @Validated UserReqDTO.UPDATE update) {
         try {
             userService.updateUser(userId, update);
             return ResponseFormat.success(ResponseStatus.SUCCESS_NO_CONTENT);

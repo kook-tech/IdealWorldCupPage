@@ -7,14 +7,16 @@ import com.kch.persistence.repository.GameRepository;
 import com.kch.service.model.dtos.request.GameReqDTO;
 import com.kch.service.model.dtos.response.GameResDTO;
 import com.kch.service.model.mapper.GameMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class GameService {
-    private GameRepository gameRepository;
-    private GameMapper gameMapper;
+    private final GameRepository gameRepository;
+    private final GameMapper gameMapper;
 
 
     /*게임 생성 서비스

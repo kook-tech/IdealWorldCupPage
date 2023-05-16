@@ -7,7 +7,6 @@ import com.kch.persistence.repository.GameLogRepository;
 import com.kch.service.model.dtos.request.GameLogReqDTO;
 import com.kch.service.model.dtos.response.GameLogResDTO;
 import com.kch.service.model.mapper.GameLogMapper;
-import com.kch.service.model.mapper.GameMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +17,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class GameLogService {
-    private GameLogRepository gameLogRepository;
-    private GameLogMapper gameLogMapper;
+    private final GameLogRepository gameLogRepository;
+    private final GameLogMapper gameLogMapper;
 
     /*게임 기록 생성 서비스
     param : 생성 기록 info*/

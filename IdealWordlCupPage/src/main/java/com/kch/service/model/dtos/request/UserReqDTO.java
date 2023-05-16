@@ -2,6 +2,7 @@ package com.kch.service.model.dtos.request;
 
 import com.kch.service.model.enums.UserRole;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class UserReqDTO {
         private String password;
         @NotBlank(message = "이름을 입력해주세요")
         private String name;
-        @NotBlank(message = "생년월일을 확인해주세요")
+        @Past(message = "생년월일은 과거이어야 합니다")
         private LocalDateTime birth;
         @NotBlank(message = "이메일을 입력해주세요")
         private String email;

@@ -7,16 +7,18 @@ import com.kch.persistence.repository.BoardRepository;
 import com.kch.service.model.dtos.request.BoardReqDTO;
 import com.kch.service.model.dtos.response.BoardResDTO;
 import com.kch.service.model.mapper.BoardMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class BoardService {
-    private BoardRepository boardRepository;
-    private BoardMapper boardMapper;
+    private final BoardRepository boardRepository;
+    private final BoardMapper boardMapper;
 
     /*게시판 생성 서비스
     param : 생성 게시판 info*/

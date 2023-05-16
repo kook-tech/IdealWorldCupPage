@@ -4,7 +4,6 @@ import com.kch.persistence.entity.User;
 import com.kch.service.model.dtos.request.UserReqDTO;
 import com.kch.service.model.dtos.response.UserResDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {

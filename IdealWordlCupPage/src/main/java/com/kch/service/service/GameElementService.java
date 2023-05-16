@@ -7,16 +7,18 @@ import com.kch.persistence.repository.GameElementRepository;
 import com.kch.service.model.dtos.request.GameElementReqDTO;
 import com.kch.service.model.dtos.response.GameElementResDTO;
 import com.kch.service.model.mapper.GameElementMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class GameElementService {
-    private GameElementRepository gameElementRepository;
-    private GameElementMapper gameElementMapper;
+    private final GameElementRepository gameElementRepository;
+    private final GameElementMapper gameElementMapper;
 
     /*게임 목록들 생성 서비스
     param : 생성 게임 목록들 info List*/

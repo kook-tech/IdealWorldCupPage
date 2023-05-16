@@ -23,7 +23,7 @@ public class ReplyController {
     /*댓글 작성 컨트롤러
     param : 작성 댓글 info*/
     @PostMapping
-    public ResponseFormat<Void> createReply(@RequestParam @Validated ReplyReqDTO.CREATE create) {
+    public ResponseFormat<Void> createReply(@RequestBody @Validated ReplyReqDTO.CREATE create) {
         try {
             replyService.createReply(create);
             return ResponseFormat.success(ResponseStatus.SUCCESS_CREATE);

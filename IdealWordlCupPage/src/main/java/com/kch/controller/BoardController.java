@@ -9,7 +9,6 @@ import com.kch.service.model.dtos.response.BoardResDTO;
 import com.kch.service.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

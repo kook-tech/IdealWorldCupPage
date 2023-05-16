@@ -4,20 +4,23 @@ import com.kch.infrastructure.error.NotFoundException;
 import com.kch.infrastructure.model.ResponseStatus;
 import com.kch.persistence.entity.Reply;
 import com.kch.persistence.repository.ReplyRepository;
+import com.kch.persistence.repository.UserRepository;
 import com.kch.service.model.dtos.request.ReplyReqDTO;
 import com.kch.service.model.dtos.response.ReplyResDTO;
 import com.kch.service.model.mapper.ReplyMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ReplyService {
-    private ReplyRepository replyRepository;
-    private ReplyMapper replyMapper;
-
+    private final ReplyRepository replyRepository;
+    private final ReplyMapper replyMapper;
+    private final UserRepository userRepository;
     /*댓글 작성 서비스
     param : 작성 댓글 info*/
     @Transactional
