@@ -7,20 +7,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-/*    @Mapping(target = "loginId", source = "create.loginId")
-    @Mapping(target = "password", source = "create.password")
-    @Mapping(target = "name", source = "create.name")
-    @Mapping(target = "birth", source = "create.birth")
-    @Mapping(target = "email", source = "create.email")
-    @Mapping(target = "role", source = "create.role")*/
     User toUserEntity(UserReqDTO.CREATE create);
-
-/*    @Mapping(target = "loginId", source = "create.loginId")
-    @Mapping(target = "password", source = "create.password")
-    @Mapping(target = "name", source = "create.name")
-    @Mapping(target = "birth", source = "create.birth")
-    @Mapping(target = "email", source = "create.email")
-    @Mapping(target = "role", source = "create.role")*/
     UserResDTO.READ toReadDto(User user);
-
 }

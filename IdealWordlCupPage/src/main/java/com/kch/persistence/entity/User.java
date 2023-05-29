@@ -37,7 +37,7 @@ public class User extends BaseEntity {
     @Column(name="role", nullable = false, length = 20)
     private UserRole role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+/*    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boardList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
@@ -47,7 +47,7 @@ public class User extends BaseEntity {
     private List<GameLog> gameLogList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Game> gameList;
+    private List<Game> gameList;*/
 
 
 
