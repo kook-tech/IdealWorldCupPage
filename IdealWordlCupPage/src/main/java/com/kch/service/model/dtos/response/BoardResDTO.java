@@ -1,5 +1,7 @@
 package com.kch.service.model.dtos.response;
 
+import com.kch.service.model.enums.Category;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,8 +14,9 @@ public class BoardResDTO {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class READ{
         private Long boardId;
-        private Long UserId;
-        private Long categoryId;
+        @NotNull
+        private Long userId;
+        private Category category;
         private String boardTitle;
         private String boardContent;
         private LocalDateTime regDt;

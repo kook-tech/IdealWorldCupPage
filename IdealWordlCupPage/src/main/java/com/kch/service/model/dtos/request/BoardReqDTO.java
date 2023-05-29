@@ -1,9 +1,7 @@
 package com.kch.service.model.dtos.request;
 
-import com.kch.persistence.entity.Category;
-import com.kch.persistence.entity.File;
-import com.kch.persistence.entity.User;
-import jakarta.validation.constraints.NotBlank;
+import com.kch.service.model.enums.Category;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 public class BoardReqDTO {
@@ -13,8 +11,9 @@ public class BoardReqDTO {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class CREATE{
-        private Long UserId;
-        private Long categoryId;
+        @NotNull
+        private Long userId;
+        private Category category;
         private String boardTitle;
         private String boardContent;
 

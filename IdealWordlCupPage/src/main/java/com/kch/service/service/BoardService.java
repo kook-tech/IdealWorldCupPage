@@ -3,9 +3,12 @@ package com.kch.service.service;
 import com.kch.infrastructure.error.NotFoundException;
 import com.kch.infrastructure.model.ResponseStatus;
 import com.kch.persistence.entity.Board;
+import com.kch.persistence.entity.User;
 import com.kch.persistence.repository.BoardRepository;
+import com.kch.persistence.repository.UserRepository;
 import com.kch.service.model.dtos.request.BoardReqDTO;
 import com.kch.service.model.dtos.response.BoardResDTO;
+import com.kch.service.model.enums.Category;
 import com.kch.service.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,21 +22,23 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
-
+    private final UserRepository userRepository;
     /*게시판 생성 서비스
     param : 생성 게시판 info*/
     @Transactional
     public void createBoard(BoardReqDTO.CREATE create){
-        final Board board = boardMapper.toBoardEntity(create);
+        final User user = userRepository.findById(create.getUserId()).orElse(null);
+
+        final Board board = boardMapper.toBoardEntity(create, user);
         boardRepository.save(board);
     }
 
     /*게시판 읽기 서비스
     param : 읽을 게시판 카테고리 아이디(CategoryEntity's pk)*/
-    public List<BoardResDTO.READ> getBoardByCategoryId(Long categoryId){
+    public List<BoardResDTO.READ> getBoardByCategory(Category category){
         final List<Board> boardList = boardRepository
-                .findByCategoryId(categoryId);
-
+                .findByCategory(category);
+//        System.out.println(boardList.get(0).getUser().getId());
         return boardMapper.toReadDtoList(boardList);
     }
 

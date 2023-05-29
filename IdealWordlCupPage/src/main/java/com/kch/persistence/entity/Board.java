@@ -4,7 +4,7 @@ import com.kch.persistence.BaseEntity;
 import com.kch.service.model.dtos.request.BoardReqDTO;
 import jakarta.persistence.*;
 import lombok.*;
-
+import com.kch.service.model.enums.Category;
 import java.util.List;
 
 @Entity
@@ -21,8 +21,7 @@ public class Board extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @Column(name = "category")
     private Category category;
 
     @Column(name="board_title",length = 30)
@@ -37,8 +36,8 @@ public class Board extends BaseEntity {
     @Column(name="like_cnt")
     private int like_cnt;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-    private List<Reply> replyList;
+    /*@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    private List<Reply> replyList;*/
 
 
     @Builder
