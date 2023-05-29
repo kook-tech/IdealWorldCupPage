@@ -7,8 +7,6 @@ import com.kch.service.model.dtos.request.ReplyReqDTO;
 import com.kch.service.model.dtos.response.ReplyResDTO;
 import com.kch.service.service.ReplyService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,10 +32,10 @@ public class ReplyController {
 
     /*게임 댓글 조회 컨트롤러
     param : 댓글들 소속 게임 gameId*/
-    @GetMapping("/{gameId}")
-    public ResponseFormat<List<ReplyResDTO.READ>> getReplysByGameId(@PathVariable(name = "gameId") Long gameId) {
+    @GetMapping("/games/{gameId}")
+    public ResponseFormat<List<ReplyResDTO.READ>> getRepliesByGameId(@PathVariable(name = "gameId") Long gameId) {
         try {
-            return ResponseFormat.successWithData(ResponseStatus.SUCCESS_OK, replyService.getReplysByGameId(gameId));
+            return ResponseFormat.successWithData(ResponseStatus.SUCCESS_OK, replyService.getRepliesByGameId(gameId));
         } catch (NotFoundException e) {
             return ResponseFormat.error(ResponseStatus.FAIL_NOT_FOUND);
         } catch (RuntimeException e) {
@@ -47,10 +45,10 @@ public class ReplyController {
 
     /*게시판 댓글 조회 컨트롤러
     param : 댓글들 소속 게시판 boardId*/
-    @GetMapping("/{boardId}")
-    public ResponseFormat<List<ReplyResDTO.READ>> getReplysByBoardId(@PathVariable(name = "boardId") Long boardId) {
+    @GetMapping("/boards/{boardId}")
+    public ResponseFormat<List<ReplyResDTO.READ>> getRepliesByBoardId(@PathVariable(name = "boardId") Long boardId) {
         try {
-            return ResponseFormat.successWithData(ResponseStatus.SUCCESS_OK, replyService.getReplysByBoardId(boardId));
+            return ResponseFormat.successWithData(ResponseStatus.SUCCESS_OK, replyService.getRepliesByBoardId(boardId));
         } catch (NotFoundException e) {
             return ResponseFormat.error(ResponseStatus.FAIL_NOT_FOUND);
         } catch (RuntimeException e) {
@@ -60,10 +58,10 @@ public class ReplyController {
 
     /*댓글  수정 컨트롤러
     param : 수정 댓글 Info*/
-    @PutMapping
-    public ResponseFormat<Void> updateReplyByReplyId(ReplyReqDTO.UPDATE update) {
+    @PutMapping("/{replyId}")
+    public ResponseFormat<Void> updateReplyByReplyId(@PathVariable Long replyId, @RequestBody ReplyReqDTO.UPDATE update) {
         try {
-            replyService.updateReply(update);
+            replyService.updateReply(replyId, update);
             return ResponseFormat.success(ResponseStatus.SUCCESS_NO_CONTENT);
         } catch (NotFoundException e) {
             return ResponseFormat.error(ResponseStatus.FAIL_NOT_FOUND);

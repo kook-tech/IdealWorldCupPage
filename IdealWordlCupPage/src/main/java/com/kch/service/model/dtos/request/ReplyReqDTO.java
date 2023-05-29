@@ -1,5 +1,7 @@
 package com.kch.service.model.dtos.request;
 
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.Null;
 import lombok.*;
 
 public class ReplyReqDTO {
@@ -20,7 +22,6 @@ public class ReplyReqDTO {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class UPDATE{
-        private Long replyId;
         private String content;
     }
 }
