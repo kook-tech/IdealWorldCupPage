@@ -14,7 +14,7 @@ public class GameResDTO {
     public static class READ{
         private Long gameId;
         private Long userId;
-        private File fileId;
+        private Long fileId;
         private String gameTitle;
         private String gameDescription;
         private LocalDateTime regDt;
