@@ -21,7 +21,7 @@ public class GameLogController {
     /*기록 생성 컨트롤러
     param : 생성 기록 info*/
     @PostMapping
-    public ResponseFormat<Void> createGame(@RequestParam @Validated GameLogReqDTO.CREATE create) {
+    public ResponseFormat<Void> createGame(@RequestBody @Validated GameLogReqDTO.CREATE create) {
         try {
             gameLogService.createGameLog(create);
             return ResponseFormat.success(ResponseStatus.SUCCESS_CREATE);

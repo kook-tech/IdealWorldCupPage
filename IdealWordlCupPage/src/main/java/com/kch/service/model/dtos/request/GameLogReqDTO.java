@@ -14,7 +14,6 @@ public class GameLogReqDTO {
         private Long gameId;
         private Long userId;
         private String gameLog;
-        private LocalDateTime regDt;
     }
 
     //수정DTO 필요 없음

@@ -2,8 +2,13 @@ package com.kch.service.service;
 
 import com.kch.infrastructure.error.NotFoundException;
 import com.kch.infrastructure.model.ResponseStatus;
+import com.kch.persistence.entity.File;
+import com.kch.persistence.entity.Game;
 import com.kch.persistence.entity.GameLog;
+import com.kch.persistence.entity.User;
 import com.kch.persistence.repository.GameLogRepository;
+import com.kch.persistence.repository.GameRepository;
+import com.kch.persistence.repository.UserRepository;
 import com.kch.service.model.dtos.request.GameLogReqDTO;
 import com.kch.service.model.dtos.response.GameLogResDTO;
 import com.kch.service.model.mapper.GameLogMapper;
@@ -19,12 +24,16 @@ import java.util.List;
 public class GameLogService {
     private final GameLogRepository gameLogRepository;
     private final GameLogMapper gameLogMapper;
-
+    private final UserRepository userRepository;
+    private final GameRepository gameRepository;
     /*게임 기록 생성 서비스
     param : 생성 기록 info*/
     @Transactional
     public void createGameLog(GameLogReqDTO.CREATE create){
-        final GameLog gameLog = gameLogMapper.toGameLogEntity(create);
+        final User user = userRepository.findById(create.getUserId()).orElse(null);
+        final Game game = gameRepository.findById(create.getGameId()).orElse(null);
+
+        final GameLog gameLog = gameLogMapper.toGameLogEntity(create,user,game);
         gameLogRepository.save(gameLog);
     }
 

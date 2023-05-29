@@ -3,6 +3,7 @@ package com.kch.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class) //baseentity 상속 안해서 생성일자 auditing하게 따로 등록
 public class GameLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +35,10 @@ public class GameLog {
     private LocalDateTime regDt;
 
     @Builder
-    private GameLog(Long id, Game game, User user, String gameLog, LocalDateTime regDt) {
-        this.id = id;
+    private GameLog( Game game, User user, String gameLog) {
         this.game = game;
         this.user = user;
         this.gameLog = gameLog;
-        this.regDt = LocalDateTime.now();
     }
 
     //수정 메서드 필요없음.
