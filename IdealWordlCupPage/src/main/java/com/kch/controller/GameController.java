@@ -22,7 +22,7 @@ public class GameController {
     /*게임 생성 컨트롤러
     param : 생성 게임 info*/
     @PostMapping
-    public ResponseFormat<Void> createGame(@RequestParam @Validated GameReqDTO.CREATE create){
+    public ResponseFormat<Void> createGame(@RequestBody @Validated GameReqDTO.CREATE create){
         try{
             gameService.createGame(create);
             return ResponseFormat.success(ResponseStatus.SUCCESS_CREATE);
@@ -47,7 +47,7 @@ public class GameController {
     /*게임 정보 수정 컨트롤러
     param : 수정 게임 GameId, 수정 게임 Info*/
     @PutMapping("/{gameId}")
-    public ResponseFormat<Void> updateGameBygameId(@PathVariable(name = "gameId") Long gameId, GameReqDTO.UPDATE update){
+    public ResponseFormat<Void> updateGameBygameId(@PathVariable(name = "gameId") Long gameId,@RequestBody @Validated GameReqDTO.UPDATE update){
         try{
             gameService.updateGame(gameId, update);
             return ResponseFormat.success(ResponseStatus.SUCCESS_NO_CONTENT);
