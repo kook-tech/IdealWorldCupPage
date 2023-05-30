@@ -13,6 +13,7 @@ public class BoardResDTO {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class READ{
+        @NotNull
         private Long boardId;
         @NotNull
         private Long userId;

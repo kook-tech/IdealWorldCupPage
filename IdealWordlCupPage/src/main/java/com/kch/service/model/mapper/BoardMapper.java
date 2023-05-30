@@ -11,7 +11,7 @@ import org.mapstruct.Named;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface BoardMapper {
+public interface BoardMapper{
     @Mapping(target = "user", source = "user")
     Board toBoardEntity(BoardReqDTO.CREATE create, User user);
 
@@ -20,7 +20,6 @@ public interface BoardMapper {
     BoardResDTO.READ toReadDto(Board board);
 
     List<BoardResDTO.READ> toReadDtoList(List<Board> boardList);
-
     @Named("mapUserToUserId")
     default Long mapUserToUserId(User user) {
         return user.getId();
