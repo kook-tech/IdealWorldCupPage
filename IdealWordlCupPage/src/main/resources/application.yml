@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/idealworldcup
-    username: root
-    password: 1234
+    username: worldcup
+    password: 3011
 
 #    ?characterEncoding=UTF-8&serverTimezone=UTC
 
@@ -15,6 +15,6 @@ spring:
             non_contextual_creation: 'true'
     show-sql: 'true'
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 server:
   port: 8080
